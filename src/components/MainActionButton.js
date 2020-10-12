@@ -11,16 +11,21 @@ const Button = styled.button`
   outline: none;
   border-radius: 3px;
   font-family: Courier;
+  padding: 1rem;
   &:hover {
     color: lightgrey;
     border: 4px solid lightgrey;
     cursor: pointer;
   }
+  @media (max-width: 480px) {
+    width: 100%;
+    height: 100%;
+  }
 `
 
 const MainActionButton = (props) => {
   return (
-    <Button>{props.text}</Button>
+    <Button onClick={props.onClick}>{props.text}</Button>
   )
 }
 
