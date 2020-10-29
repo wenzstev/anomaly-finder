@@ -1,5 +1,6 @@
 import React from "react"
 import styled from "styled-components"
+import {StyledButton} from "./ReusableStylings"
 
 const StyledDisplay = styled.div
 `
@@ -27,17 +28,24 @@ const StyledScore = styled.button
   font-weight: bold;
 `
 
-const ScorePanel = () => <StyledScore>23</StyledScore>
+const ScorePanel = ({score}) => {
+  return (
+    <StyledScore>{score}</StyledScore>
+  )
+}
 
-const AnomalyDisplay = () => {
+const AnomalyDisplay = (props) => {
+  const {title, body, score, id_} = props.anomaly
+  console.log(props.anomaly)
   return (
     <StyledDisplay>
-    <h3> Anomaly #213</h3>
+    <h3> Anomaly #{id_}</h3>
       <StyledTitle>
-        <ScorePanel />
-        <h1>Anomaly Name</h1>
+        <ScorePanel score={score}/>
+        <h1>{title}</h1>
       </StyledTitle>
-    <p>This is an anomaly!</p>
+    <p>{body}</p>
+    <StyledButton onClick={props.saveAnomaly}>Save Anomaly</StyledButton>
     </StyledDisplay>
   )
 }

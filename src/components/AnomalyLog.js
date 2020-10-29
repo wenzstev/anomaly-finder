@@ -1,6 +1,8 @@
 import React, {useState} from "react"
 import styled from "styled-components"
 
+import {StyledButton} from "./ReusableStylings"
+
 const StyledForm = styled.form
 `
   input, textarea {
@@ -24,23 +26,7 @@ const StyledForm = styled.form
   p {
     margin-bottom: .25rem;
   }
-  button {
-    font-family: inherit;
-    background: transparent;
-    color: inherit;
-    border: 4px solid white;
-    outline: none;
-    font-size: inherit;
-    margin: .75rem auto;
-    display: block;
-    text-align: center;
-    border-radius: 3px;
-    &:hover {
-      color: lightgrey;
-      border: 4px solid lightgrey;
-      cursor: pointer;
-    }
-  }
+
   @media (max-width: 538px) {
     input {
       width: 90vw;
@@ -61,6 +47,7 @@ const StyledForm = styled.form
     }
   }
 `
+
 
 const WrapperDiv = styled.div
 `
@@ -83,7 +70,7 @@ const AnomalyLog = (props) => {
           </p>
           <textarea value={props.descValue} onChange={props.changeDesc}/>
         </label>
-        <button type="submit">Submit Log</button>
+        <StyledButton onClick={props.postNewAnomaly}>Submit Log</StyledButton>
       </StyledForm>
     </div>
   )

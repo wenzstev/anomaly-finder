@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -13,6 +13,17 @@ const App = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalContents, setModalContents] = useState()
 
+  const [savedAnomalies, setSavedAnomalies] = useState(
+    localStorage.getItem('savedAnomalies') || ''
+  )
+
+  useEffect(()=>{
+    if (savedAnomalies === '') {
+      localStorage.setItem('savedAnomalies', [])
+      setSavedAnomalies(localStorage.getItem('savedAnomalies'))
+    }
+  }, [])
+
   const setModal = (contents) => {
     setModalContents(contents)
     setModalOpen(true)
@@ -22,6 +33,7 @@ const App = () => {
     setModalContents(null)
     setModalOpen(false)
   }
+
 
   return (
     <Background>
