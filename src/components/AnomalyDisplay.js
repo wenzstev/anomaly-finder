@@ -34,6 +34,14 @@ const ScorePanel = ({score}) => {
   )
 }
 
+const ToggleButton = (props) => {
+  return props.isSaved ? (
+    <StyledButton onClick={props.removeSaved}>Anomaly Saved</StyledButton>
+  ) : (
+    <StyledButton onClick={props.saveAnomaly}>Save Anomaly</StyledButton>
+  )
+}
+
 const AnomalyDisplay = (props) => {
   const {title, body, score, id_} = props.anomaly
   console.log(props.anomaly)
@@ -45,7 +53,10 @@ const AnomalyDisplay = (props) => {
         <h1>{title}</h1>
       </StyledTitle>
     <p>{body}</p>
-    <StyledButton onClick={props.saveAnomaly}>Save Anomaly</StyledButton>
+    <ToggleButton
+      isSaved={props.isSaved} 
+      removeSaved={props.removeSaved}
+      saveAnomaly={props.saveAnomaly}/>
     </StyledDisplay>
   )
 }

@@ -10,9 +10,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.3",
+    "react-ticker": "^1.2.2",
     "styled-components": "^5.2.0"
   },
-  "proxy":"http://localhost:5000",
+  "proxy": "http://localhost:5000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

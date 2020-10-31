@@ -8,6 +8,7 @@ import Container from "./components/Container"
 import Modal from "./components/Modal"
 import AnomalyDisplay from "./components/AnomalyDisplayController"
 import AnomalyLog from "./components/AnomalyLogController"
+import AnomalyTicker from "./components/AnomalyTicker"
 
 const App = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -19,9 +20,12 @@ const App = () => {
 
   useEffect(()=>{
     if (savedAnomalies === '') {
-      localStorage.setItem('savedAnomalies', [])
+      console.log("creating new local storage")
+      localStorage.setItem('savedAnomalies', JSON.stringify([]))
       setSavedAnomalies(localStorage.getItem('savedAnomalies'))
-    }
+    } /*else {
+      localStorage.removeItem('savedAnomalies')
+    } */ //leaving in for debug purposes
   }, [])
 
   const setModal = (contents) => {
@@ -37,10 +41,12 @@ const App = () => {
 
   return (
     <Background>
+      <AnomalyTicker />
       <Container>
         <MainActionButton text={"Find Anomaly"} onClick={()=>setModal(<AnomalyDisplay />)}/>
         <MainActionButton text={"Log Anomaly"} onClick={()=>setModal(<AnomalyLog />)} />
-      </Container>
+        <MainActionButton text={"Saved Anomalies"}/>
+    </Container>
       <Modal
         open={modalOpen}
         contents={modalContents}

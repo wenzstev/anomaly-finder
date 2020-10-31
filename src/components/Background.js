@@ -4,7 +4,7 @@ import styled from "styled-components"
 const StyledBackground = styled.div
 `
   background-color: black;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
 `
 
