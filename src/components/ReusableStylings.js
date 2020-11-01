@@ -10,12 +10,65 @@ export const StyledButton = styled.button
   outline: none;
   font-size: inherit;
   margin: .75rem auto;
-  display: block;
-  text-align: center;
   border-radius: 3px;
   &:hover {
     color: lightgrey;
     border: 4px solid lightgrey;
     cursor: pointer;
+  }
+`
+export const StyledForm = styled.form
+`
+  input, textarea {
+    font-family: inherit;
+    font-size: 1.6rem;
+    color: inherit;
+    border: 4px solid white;
+    border-radius: 3px;
+    background: inherit;
+    margin: auto;
+    outline: none;
+    &:focus {
+      border: 4px solid lightgrey;
+    }
+  }
+  textarea {
+    width: 90vw;
+    display: block;
+    height: 60vh;
+  }
+  p {
+    margin-bottom: .25rem;
+  }
+  .error {
+    input, textarea {
+      border: 4px solid red;
+    }
+  }
+  .form-input {
+    display: inline-block;
+  }
+  .form-label {
+    display: inline-block;
+  }
+
+  @media (max-width: 538px) {
+    input {
+      width: 90vw;
+      display: block;
+    }
+    textarea {
+      height: 55vh;
+    }
+  }
+  @media (max-height: 730px) {
+    textarea {
+      height: 50vh;
+    }
+  }
+  @media (max-height: 640px) {
+    textarea {
+      height: 35vh;
+    }
   }
 `

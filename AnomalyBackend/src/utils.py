@@ -49,4 +49,12 @@ def get_anomalies_by_params(params):
     if params.get("random"):
         anomalies = db.session.query(Anomaly).order_by(func.random())
         return [anomalies.first()]
+    if params.get("ticker"):
+        anomalies = db.engine.execute(f'''
+            SELECT id_, title 
+            FROM anomaly 
+            ORDER BY id_ DESC 
+            LIMIT {params.get("ticker")}''')
+        return anomalies
+
     return db.session.query(Anomaly).all()

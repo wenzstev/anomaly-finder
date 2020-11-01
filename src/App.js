@@ -45,7 +45,6 @@ const App = () => {
       <Container>
         <MainActionButton text={"Find Anomaly"} onClick={()=>setModal(<AnomalyDisplay />)}/>
         <MainActionButton text={"Log Anomaly"} onClick={()=>setModal(<AnomalyLog />)} />
-        <MainActionButton text={"Saved Anomalies"}/>
     </Container>
       <Modal
         open={modalOpen}

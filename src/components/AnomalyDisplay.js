@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import {StyledButton} from "./ReusableStylings"
+import {StyledButton, StyledForm} from "./ReusableStylings"
 
 const StyledDisplay = styled.div
 `
@@ -54,7 +54,7 @@ const AnomalyDisplay = (props) => {
       </StyledTitle>
     <p>{body}</p>
     <ToggleButton
-      isSaved={props.isSaved} 
+      isSaved={props.isSaved}
       removeSaved={props.removeSaved}
       saveAnomaly={props.saveAnomaly}/>
     </StyledDisplay>
