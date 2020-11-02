@@ -28,9 +28,9 @@ const StyledScore = styled.button
   font-weight: bold;
 `
 
-const ScorePanel = ({score}) => {
+const ScorePanel = ({score, vote}) => {
   return (
-    <StyledScore>{score}</StyledScore>
+    <StyledScore onClick={vote}>{score}</StyledScore>
   )
 }
 
@@ -49,7 +49,7 @@ const AnomalyDisplay = (props) => {
     <StyledDisplay>
     <h3> Anomaly #{id_}</h3>
       <StyledTitle>
-        <ScorePanel score={score}/>
+        <ScorePanel score={score} vote={()=>props.vote(id_)}/>
         <h1>{title}</h1>
       </StyledTitle>
     <p>{body}</p>

@@ -1,8 +1,10 @@
 import React, {useState} from "react"
 import styled from "styled-components"
+import {Formik, Form} from "formik"
+import * as Yup from 'yup'
 
 import {StyledButton, StyledForm} from "./ReusableStylings"
-
+import {FormInput} from "./FormComponents"
 
 
 
@@ -15,24 +17,37 @@ const AnomalyLog = (props) => {
   return (
     <div>
       <h3>Log Anomaly</h3>
-      <StyledForm>
-        <label>
-            Anomaly Name
-          <div className="form-input">
-            <input value={props.nameValue} onChange={props.changeName}/>
-          </div>
-        </label>
-        <label>
-          <p>
-            Description of Anomaly
-            {props.charsLeft < 200 ? <span style={{color:"red"}}>{props.charsLeft}</span> : null}
-          </p>
-          <textarea value={props.descValue} onChange={props.changeDesc}/>
-        </label>
-        <StyledButton
-          style={{display:"block", textAlign:"center"}}
-          onClick={props.postNewAnomaly}>Submit Log</StyledButton>
-      </StyledForm>
+      <Formik
+        initialValues = {{
+          name: '',
+          description: '',
+        }}
+        validationSchema={Yup.object({
+          name: Yup.string()
+            .min(5, 'Name must be at least 5 characters')
+            .required('Required'),
+          description: Yup.string()
+            .max(1000, 'Description must be 1000 characters or less.')
+            .required('Required')
+        })}
+        onSubmit={(values) => {
+          props.postNewAnomaly(values)
+        }}
+        >
+        <Form>
+          <FormInput
+            label="Name of Anomaly"
+            name="name"
+            />
+          <FormInput
+            label="Description of Anomaly"
+            name="description"
+            multiline
+            />
+          <StyledButton
+            type="submit">Submit Log</StyledButton>
+        </Form>
+      </Formik>
     </div>
   )
 }

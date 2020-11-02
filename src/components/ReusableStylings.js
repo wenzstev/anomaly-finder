@@ -9,13 +9,14 @@ export const StyledButton = styled.button
   border: 4px solid white;
   outline: none;
   font-size: inherit;
-  margin: .75rem auto;
+  margin: .75rem 1rem;
   border-radius: 3px;
   &:hover {
     color: lightgrey;
     border: 4px solid lightgrey;
     cursor: pointer;
   }
+  ${props => props.centered ? 'display:block; text-align:centered' : null}
 `
 export const StyledForm = styled.form
 `
@@ -39,17 +40,6 @@ export const StyledForm = styled.form
   }
   p {
     margin-bottom: .25rem;
-  }
-  .error {
-    input, textarea {
-      border: 4px solid red;
-    }
-  }
-  .form-input {
-    display: inline-block;
-  }
-  .form-label {
-    display: inline-block;
   }
 
   @media (max-width: 538px) {

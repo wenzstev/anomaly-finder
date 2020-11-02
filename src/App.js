@@ -18,6 +18,10 @@ const App = () => {
     localStorage.getItem('savedAnomalies') || ''
   )
 
+  const [votedAnomalies, setVotedAnomalies] = useState(
+    localStorage.getItem('votedAnomalies') || ''
+  )
+
   useEffect(()=>{
     if (savedAnomalies === '') {
       console.log("creating new local storage")
@@ -26,6 +30,10 @@ const App = () => {
     } /*else {
       localStorage.removeItem('savedAnomalies')
     } */ //leaving in for debug purposes
+    if (votedAnomalies === ''){
+      console.log("creating voted anomalies list")
+      localStorage.setItem('votedAnomalies', JSON.stringify([]))
+    }
   }, [])
 
   const setModal = (contents) => {
