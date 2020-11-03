@@ -25,7 +25,8 @@ const AnomalyFinder = (props) => {
           <FormInput label="Anomaly ID" name="id" />
           <StyledButton type="submit">Find Anomaly</StyledButton>
           <StyledButton onClick={props.getRandomAnomaly} type="button">Random Anomaly</StyledButton>
-        </Form>
+          <StyledButton onClick={props.openList} type="button">Saved Anomalies</StyledButton>
+      </Form>
       </Formik>
 
     </div>

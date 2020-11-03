@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from "react"
 import AnomalyDisplay from "./AnomalyDisplay"
 import AnomalyFinder from "./AnomalyFinder"
+import SavedAnomalies from "./SavedAnomalies"
 
 import axios from "../AxiosConfig"
 
 const AnomalyDisplayController = () => {
   const [anomaly, setAnomaly] = useState(null)
   const [isSaved, setIsSaved] = useState(false)
+  const [isListOpen, setIsListOpen] = useState(false)
 
   const checkIsSaved = (id) => {
     const savedAnomalies = JSON.parse(localStorage.getItem('savedAnomalies'))
@@ -83,11 +85,14 @@ const AnomalyDisplayController = () => {
     getAnomaly(id)
   }
 
-  const display = anomaly ? (
+  const display = isListOpen ? (
+      <SavedAnomalies />
+    ) : anomaly ? (
       <AnomalyDisplay
         anomaly={anomaly}
         saveAnomaly = {()=>saveAnomaly(anomaly.id_)}
         removeSaved = {()=>removeSaved(anomaly.id_)}
+        getRandomAnomaly = {getRandomAnomaly}
         isSaved={isSaved}
         vote={vote}
         />
@@ -95,6 +100,7 @@ const AnomalyDisplayController = () => {
       <AnomalyFinder
         getRandomAnomaly={getRandomAnomaly}
         setId={(id)=>getAnomaly(id)}
+        openList = {()=>setIsListOpen(true)}
         />
     )
 

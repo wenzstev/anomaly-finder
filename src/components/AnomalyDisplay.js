@@ -57,6 +57,7 @@ const AnomalyDisplay = (props) => {
       isSaved={props.isSaved}
       removeSaved={props.removeSaved}
       saveAnomaly={props.saveAnomaly}/>
+    <StyledButton onClick={props.getRandomAnomaly}>Search Again</StyledButton>
     </StyledDisplay>
   )
 }

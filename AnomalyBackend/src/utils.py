@@ -56,5 +56,11 @@ def get_anomalies_by_params(params):
             ORDER BY id_ DESC 
             LIMIT {params.get("ticker")}''')
         return anomalies
+    if params.get('id'):
+        anomalies = db.engine.execute(f'''
+            SELECT id_, title
+            FROM anomaly
+            WHERE id_ IN {tuple(params.get('id').split(','))}''')
+        return anomalies
 
     return db.session.query(Anomaly).all()
