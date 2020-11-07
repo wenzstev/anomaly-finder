@@ -62,5 +62,16 @@ def get_anomalies_by_params(params):
             FROM anomaly
             WHERE id_ IN {tuple(params.get('id').split(','))}''')
         return anomalies
+    if params.get('review'):
+        anomalies = db.engine.execute(f'''
+            SELECT * 
+            FROM anomaly
+            WHERE reviewed = 0
+            ''')
+        return anomalies
 
-    return db.session.query(Anomaly).all()
+    return db.engine.execute(f'''
+        SELECT * 
+        FROM anomaly
+        WHERE reviewed = 1
+        ''')

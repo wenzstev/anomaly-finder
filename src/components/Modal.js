@@ -18,6 +18,7 @@ const StyledModal = styled.div
   p, span {
     margin: 2rem;
   }
+  overflow: auto;
 `
 
 const Backdrop = styled.div

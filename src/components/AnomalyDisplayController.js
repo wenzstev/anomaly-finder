@@ -85,8 +85,13 @@ const AnomalyDisplayController = () => {
     getAnomaly(id)
   }
 
+  const loadFromSaved = (id) => {
+      getAnomaly(id)
+      setIsListOpen(false)
+  }
+
   const display = isListOpen ? (
-      <SavedAnomalies />
+      <SavedAnomalies setId={(id)=>loadFromSaved(id)}/>
     ) : anomaly ? (
       <AnomalyDisplay
         anomaly={anomaly}

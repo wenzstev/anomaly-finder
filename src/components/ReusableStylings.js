@@ -5,18 +5,19 @@ export const StyledButton = styled.button
 `
   font-family: inherit;
   background: transparent;
-  color: inherit;
-  border: 4px solid white;
+  color: ${props=>props.subtle ? 'darkgrey':'white'};
+  border: 4px solid ${props=>props.subtle ? 'darkgrey' : 'white'};
   outline: none;
   font-size: inherit;
-  margin: .75rem 1rem;
+  margin: ${props=>props.noMargin ? '0' : '.75rem 1rem'};
   border-radius: 3px;
   &:hover {
     color: lightgrey;
     border: 4px solid lightgrey;
     cursor: pointer;
   }
-  ${props => props.centered ? 'display:block; text-align:centered' : null}
+  ${props => props.centered ? 'display:block; text-align:center' : null}
+  ${props=> props.fullWidth ? 'width:100%' : null}
 `
 export const StyledForm = styled.form
 `

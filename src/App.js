@@ -8,7 +8,10 @@ import Container from "./components/Container"
 import Modal from "./components/Modal"
 import AnomalyDisplay from "./components/AnomalyDisplayController"
 import AnomalyLog from "./components/AnomalyLogController"
+import ReviewAnomalies from "./components/ReviewAnomalies"
 import AnomalyTicker from "./components/AnomalyTicker"
+
+import {StyledButton} from "./components/ReusableStylings"
 
 const App = () => {
   const [modalOpen, setModalOpen] = useState(false)
@@ -53,7 +56,12 @@ const App = () => {
       <Container>
         <MainActionButton text={"Find Anomaly"} onClick={()=>setModal(<AnomalyDisplay />)}/>
         <MainActionButton text={"Log Anomaly"} onClick={()=>setModal(<AnomalyLog />)} />
-    </Container>
+      </Container>
+      <StyledButton
+        onClick={()=>setModal(<ReviewAnomalies />)}
+        subtle
+        style={{fontFamily:"courier", position:"absolute", bottom:0}}
+        >Login (under construction)</StyledButton>
       <Modal
         open={modalOpen}
         contents={modalContents}
