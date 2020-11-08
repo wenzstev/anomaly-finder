@@ -49,7 +49,6 @@ const ReviewAnomaliesController = () => {
 
 const ReviewAnomaliesList = (props) => {
   const confirmAnomaly = async(id) => {
-    console.log(props.password)
     const confirm = await axios.put(`/api/anomalies/${id}/confirm`,{"revpassword":props.password})
     props.updateAnomalyReviewList(props.password)
   }
