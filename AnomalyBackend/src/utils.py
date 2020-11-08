@@ -1,4 +1,5 @@
-import random
+import random, os
+from decouple import config
 
 from src.schemas import AnomalySchema
 from src.models import Anomaly
@@ -47,12 +48,19 @@ def post_new_resource(resource_type, new_resource_json):
 
 def get_anomalies_by_params(params):
     if params.get("random"):
-        anomalies = db.session.query(Anomaly).order_by(func.random())
+        anomalies = db.session.execute(f'''
+        SELECT *
+        FROM anomaly 
+        WHERE reviewed = 1 
+        ORDER BY RANDOM()
+        LIMIT 1
+        ''')
         return [anomalies.first()]
     if params.get("ticker"):
         anomalies = db.engine.execute(f'''
             SELECT id_, title 
             FROM anomaly 
+            WHERE reviewed = 1
             ORDER BY id_ DESC 
             LIMIT {params.get("ticker")}''')
         return anomalies
@@ -62,14 +70,6 @@ def get_anomalies_by_params(params):
             FROM anomaly
             WHERE id_ IN {tuple(params.get('id').split(','))}''')
         return anomalies
-    if params.get('review'):
-        anomalies = db.engine.execute(f'''
-            SELECT * 
-            FROM anomaly
-            WHERE reviewed = 0
-            ''')
-        return anomalies
-
     return db.engine.execute(f'''
         SELECT * 
         FROM anomaly

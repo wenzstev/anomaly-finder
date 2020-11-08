@@ -18,6 +18,7 @@ export const StyledButton = styled.button
   }
   ${props => props.centered ? 'display:block; text-align:center' : null}
   ${props=> props.fullWidth ? 'width:100%' : null}
+  ${props=> props.largeOnly ? '@media(max-width: 800px){display:none;}': null}
 `
 export const StyledForm = styled.form
 `
