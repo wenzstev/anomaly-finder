@@ -23,4 +23,5 @@ yarn-debug.log*
 yarn-error.log*
 
 # database
-/AnomalyBackend/src/site.db
+/AnomalyBackend/site.db
+/AnomalyBackend/src/settings.ini
