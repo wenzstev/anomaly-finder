@@ -1,4 +1,5 @@
 import os
+from decouple import config
 from flask import Blueprint, jsonify, request, render_template
 from src import db
 
@@ -54,8 +55,8 @@ def upvote_anomaly(id_):
 @routes.route("/api/anomalies/<int:id_>/confirm", methods=["PUT"])
 def verify_anomaly(id_):
     revpassword = request.json.get("revpassword")
-    print(revpassword, os.environ.get("revpassword"))
-    if revpassword == os.environ.get("revpassword"):
+    print(revpassword, config("password"))
+    if revpassword == config("password"):
         verified_anomaly = db.engine.execute(f'''
             UPDATE anomaly
             SET reviewed = 1
@@ -69,8 +70,8 @@ def verify_anomaly(id_):
 def review_anomalies():
     revpassword = request.json.get("revpassword")
     print(revpassword)
-    print(os.environ.get('revpassword'))
-    if revpassword == os.environ.get("revpassword"):
+    print(config("password"))
+    if revpassword == config("password"):
         unreviewed_anomalies = db.engine.execute(f'''
             SELECT * FROM anomaly
             WHERE reviewed = 0
