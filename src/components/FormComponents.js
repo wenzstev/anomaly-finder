@@ -8,7 +8,8 @@ import {useField} from 'formik'
 const StyledLabel = styled.label
 `
 margin: 1rem;
-display: block;
+box-sizing: border-box;
+display: ${props => props.multiline ? "block;" : "inline-block;"}
 input, textarea {
   border: 4px solid white;
   font-family: Courier;
@@ -22,9 +23,11 @@ input, textarea {
   }
 }
 textarea {
-  width: 90vw;
+  width: 100%;
   display: block;
-  height: 50vh;
+  margin: auto;
+  height: 45vh;
+  box-sizing: border-box;
 }
 .error {
   color: red;
@@ -36,8 +39,8 @@ textarea {
 export const FormInput = ({label, ...props}) => {
   const [field, meta] = useField(props);
   return (
-    <StyledLabel>
-      <span>{label}</span>
+    <StyledLabel multiline={props.multiline}>
+      <span style={{margin:0}}>{label}</span>
       <div>
       {props.multiline ? (
           <textarea {...field} {...props}/>

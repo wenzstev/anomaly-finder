@@ -22,16 +22,18 @@ input, button {
 
 const ReviewAnomaliesController = () => {
   const [anomaliesToReview, setAnomaliesToReview] = useState([])
+  const [isPasswordCorrect, setIsPasswordCorrect] = useState(false)
   const [password, setPassword] = useState("")
 
   const updateAnomalyReviewList = (pw) => {
     axios.post(`/api/review`,{"revpassword":pw})
     .then(req=>{
       setAnomaliesToReview(req.data)
+      setIsPasswordCorrect(true)
     })
   }
 
-  const display = anomaliesToReview.length === 0 ? (
+  const display = !isPasswordCorrect ? (
     <ReviewAnomaliesForm
       setPassword={setPassword}
       setAnomaliesToReview={setAnomaliesToReview}

@@ -65,6 +65,13 @@ def get_anomalies_by_params(params):
             LIMIT {params.get("ticker")}''')
         return anomalies
     if params.get('id'):
+        if len(params.get('id')) == 1:
+            anomaly = db.engine.execute(f'''
+            SELECT id_, title
+            FROM anomaly
+            WHERE id_ = {params.get('id')}
+            ''')
+            return anomaly
         anomalies = db.engine.execute(f'''
             SELECT id_, title
             FROM anomaly

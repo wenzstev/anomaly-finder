@@ -60,6 +60,7 @@ const App = () => {
       <StyledButton
         onClick={()=>setModal(<ReviewAnomalies />)}
         subtle
+        largeOnly
         style={{fontFamily:"courier", position:"absolute", bottom:0}}
         >Login (under construction)</StyledButton>
       <Modal
