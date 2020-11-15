@@ -10,6 +10,8 @@ import AnomalyDisplay from "./components/AnomalyDisplayController"
 import AnomalyLog from "./components/AnomalyLogController"
 import ReviewAnomalies from "./components/ReviewAnomalies"
 import AnomalyTicker from "./components/AnomalyTicker"
+import HelpPage from "./components/HelpPage"
+import IntroPage from "./components/IntroPage"
 
 import {StyledButton} from "./components/ReusableStylings"
 
@@ -25,6 +27,10 @@ const App = () => {
     localStorage.getItem('votedAnomalies') || ''
   )
 
+  const [seenIntro, setSeenIntro] = useState(
+    JSON.parse(localStorage.getItem('seenIntro')) || false
+  )
+
   useEffect(()=>{
     if (savedAnomalies === '') {
       console.log("creating new local storage")
@@ -36,6 +42,12 @@ const App = () => {
     if (votedAnomalies === ''){
       console.log("creating voted anomalies list")
       localStorage.setItem('votedAnomalies', JSON.stringify([]))
+    }
+    if (!seenIntro) {
+      setModal(<IntroPage />)
+      localStorage.setItem('seenIntro', JSON.stringify(true))
+    } else {
+      localStorage.setItem('seenIntro', JSON.stringify(false))
     }
   }, [])
 
@@ -52,7 +64,7 @@ const App = () => {
 
   return (
     <Background>
-      <AnomalyTicker />
+      <AnomalyTicker clickHandler={()=>setModal(<HelpPage />)}/>
       <Container>
         <MainActionButton text={"Find Anomaly"} onClick={()=>setModal(<AnomalyDisplay />)}/>
         <MainActionButton text={"Log Anomaly"} onClick={()=>setModal(<AnomalyLog />)} />

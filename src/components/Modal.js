@@ -11,7 +11,7 @@ const StyledModal = styled.div
   border: 4px solid white;
   color: white;
   font-family: Courier;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   h3 {
     margin: 1rem;
   }

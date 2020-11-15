@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react"
 import Ticker from "react-ticker"
 import styled from "styled-components"
 import axios from "../AxiosConfig"
+import {StyledButton} from "./ReusableStylings"
 
 const StyledDiv = styled.div
 `
@@ -20,7 +21,7 @@ font-size: 1.5rem;
 `
 
 
-const AnomalyTicker = () => {
+const AnomalyTicker = (props) => {
   const [ticks, setTicks] = useState([])
 
   useEffect(()=>{
@@ -46,6 +47,11 @@ const AnomalyTicker = () => {
             <span>Loading recent anomalies...</span>
           )}
       </Ticker>
+      <StyledButton style={{
+          right: 0,
+          position:"absolute",
+          borderRadius:"100%"}}
+          onClick={props.clickHandler}>?</StyledButton>
     </StyledDiv>
   )
 }
