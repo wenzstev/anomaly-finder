@@ -22,9 +22,12 @@ const SavedAnomalies = (props) => {
 
   useEffect(()=>{
     const getSavedFromBackend = async(saved) => {
-      const savedResponse = await axios.get(`/api/anomalies?id=${saved.replace('[', '').replace(']', '')}`)
-      console.log(savedResponse.data)
-      setSavedAnomalies(savedResponse.data)
+
+      if (saved.length > 2){ // empty list would be '[]', or 2 characters
+        const savedResponse = await axios.get(`/api/anomalies?id=${saved.replace('[', '').replace(']', '')}`)
+        console.log(savedResponse.data)
+        setSavedAnomalies(savedResponse.data)
+      }
     }
     if (savedAnomalies != "") {
       console.log(savedAnomalies)
