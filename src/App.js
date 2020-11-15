@@ -46,9 +46,7 @@ const App = () => {
     if (!seenIntro) {
       setModal(<IntroPage />)
       localStorage.setItem('seenIntro', JSON.stringify(true))
-    } else {
-      localStorage.setItem('seenIntro', JSON.stringify(false))
-    }
+    } 
   }, [])
 
   const setModal = (contents) => {
