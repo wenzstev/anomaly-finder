@@ -27,7 +27,6 @@ const AnomalyLog = (props) => {
             .min(5, 'Name must be at least 5 characters')
             .required('Required'),
           description: Yup.string()
-            .max(1000, 'Description must be 1000 characters or less.')
             .required('Required')
         })}
         onSubmit={(values) => {
