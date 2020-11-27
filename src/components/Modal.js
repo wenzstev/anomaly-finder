@@ -44,15 +44,10 @@ const Backdrop = styled.div
 
 const Footer = styled.div
 `
-position: absolute;
-bottom: 0;
 left: 50%;
 display: flex;
 justify-content: center;
-button {
-  position: relative;
-  left: -50%;
-}
+
 `
 
 const Modal = (props) => {

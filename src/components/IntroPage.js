@@ -13,6 +13,40 @@ const pageParagraphs = [
   '<p>That\'s all I\'ve got right now. Happy logging!</p>'
 ]
 
+// const IntroPage = () => {
+//   const [display, setDisplay] = useState("")
+//   const [curChar, setCurChar] = useState(0)
+//   const [curPar, setCurPar] = useState(0)
+//   const [skip, setSkip] = useState(true)
+//
+//
+
+//   useEffect(()=>{
+//     setDisplay(display => display + pageParagraphs[curPar])
+//     if (curPar < pageParagraphs.length){
+//       setTimeout(()=>setCurPar(curPar => curPar + 1), 500)
+//     }
+//   }, [curPar])
+//
+//   useEffect(()=>{
+//     if (curPar < pageParagraphs.length){
+//       setDisplay(display => display + pageParagraphs[curPar].charAt(curChar))
+//       if (curChar < pageParagraphs[curPar].length){
+//         setTimeout(()=>setCurChar(curChar=>curChar + 1), 50)
+//       } else {
+//         setCurChar(0)
+//       }
+//     }
+//
+//   }, [curChar])
+//
+//
+//   return (
+//     <div>
+//       {display}
+//     </div>
+//   )
+// }
 
 const IntroPage = () => {
   return (
