@@ -13,11 +13,12 @@ const StyledTitle = styled.div
 `
   display: flex;
   align-items: center;
+
 `
 
 const StyledScore = styled.button
 `
-  margin: 2rem;
+  margin: 0 2rem;
   font-size: 2rem;
   font-family: inherit;
   color: inherit;
@@ -26,11 +27,21 @@ const StyledScore = styled.button
   border: none;
   cursor: pointer;
   font-weight: bold;
+  display: block;
+`
+
+const ScoreLabel = styled.small
+`
+display: block;
+text-align: center;
 `
 
 const ScorePanel = ({score, vote}) => {
   return (
-    <StyledScore onClick={vote}>{score}</StyledScore>
+    <div>
+      <StyledScore onClick={vote}>{score}</StyledScore>
+      <ScoreLabel>Score</ScoreLabel>
+    </div>
   )
 }
 
@@ -44,7 +55,6 @@ const ToggleButton = (props) => {
 
 const AnomalyDisplay = (props) => {
   const {title, body, score, id_} = props.anomaly
-  console.log(props.anomaly)
   return (
     <StyledDisplay>
     <h3> Anomaly #{id_}</h3>
@@ -58,7 +68,8 @@ const AnomalyDisplay = (props) => {
       removeSaved={props.removeSaved}
       saveAnomaly={props.saveAnomaly}/>
     <StyledButton onClick={props.getRandomAnomaly}>Search Again</StyledButton>
-    </StyledDisplay>
+    <StyledButton onClick={props.returnToMenu}>Menu</StyledButton>
+  </StyledDisplay>
   )
 }
 

@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react"
 
 import Typewriter from 'typewriter-effect'
 
@@ -12,6 +12,7 @@ const pageParagraphs = [
   '<p>Click the "?" for additional help and comments. </p>',
   '<p>That\'s all I\'ve got right now. Happy logging!</p>'
 ]
+
 
 const IntroPage = () => {
   return (

@@ -16,6 +16,7 @@ const AnomalyDisplayController = () => {
   }
 
   const checkIsVoted = (id) => {
+    console.log(id)
     const votedAnomalies = JSON.parse(localStorage.getItem('votedAnomalies'))
     console.log(votedAnomalies)
     return votedAnomalies.includes(id)
@@ -98,6 +99,10 @@ const AnomalyDisplayController = () => {
         saveAnomaly = {()=>saveAnomaly(anomaly.id_)}
         removeSaved = {()=>removeSaved(anomaly.id_)}
         getRandomAnomaly = {getRandomAnomaly}
+        returnToMenu = {()=>{
+          setIsListOpen(false)
+          setAnomaly(null)
+        }}
         isSaved={isSaved}
         vote={vote}
         />

@@ -46,7 +46,9 @@ const App = () => {
     if (!seenIntro) {
       setModal(<IntroPage />)
       localStorage.setItem('seenIntro', JSON.stringify(true))
-    } 
+    }/* else {
+      localStorage.removeItem('seenIntro')
+    } */
   }, [])
 
   const setModal = (contents) => {
@@ -77,7 +79,8 @@ const App = () => {
         open={modalOpen}
         contents={modalContents}
         closeModal={closeModal}
-        >Test text</Modal>
+        closeButton={true}
+        ></Modal>
     </Background>
   );
 }

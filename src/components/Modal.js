@@ -2,9 +2,12 @@ import React from "react"
 
 import styled, {css} from "styled-components"
 
+import {StyledButton} from "./ReusableStylings"
+
 const StyledModal = styled.div
 `
   background-color: black;
+  position: relative;
   width: 95vw;
   height: 90vh;
   border-radius: 3px;
@@ -12,6 +15,7 @@ const StyledModal = styled.div
   color: white;
   font-family: Courier;
   font-size: 1.4rem;
+  padding-bottom: 2.5rem;
   h3 {
     margin: 1rem;
   }
@@ -38,16 +42,40 @@ const Backdrop = styled.div
     `};
 `
 
+const Footer = styled.div
+`
+position: absolute;
+bottom: 0;
+left: 50%;
+display: flex;
+justify-content: center;
+button {
+  position: relative;
+  left: -50%;
+}
+`
+
 const Modal = (props) => {
+  console.log(props.closeButton)
   return (
-      <StyledModal onClick={(e)=>e.stopPropagation()}>{props.children}</StyledModal>
+      <StyledModal onClick={(e)=>e.stopPropagation()}>
+        {props.children}
+        <Footer>
+          {props.closeButton ? <StyledButton onClick={props.closeModal}>Close</StyledButton> : null}
+        </Footer>
+      </StyledModal>
   )
 }
 
 const ModalBackdrop = (props) => {
   return (
     <Backdrop open={props.open} onClick={props.closeModal}>
-      {props.open ? <Modal>{props.contents}</Modal> : null}
+      {props.open ?
+        (<Modal
+          closeButton={props.closeButton}
+          closeModal={props.closeModal}>
+          {props.contents}
+        </Modal>) : null}
     </Backdrop>
   )
 }
