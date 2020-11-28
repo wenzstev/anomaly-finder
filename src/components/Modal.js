@@ -9,20 +9,17 @@ const StyledModal = styled.div
   background-color: black;
   position: relative;
   width: 95vw;
-  height: 90vh;
   border-radius: 3px;
   border: 4px solid white;
   color: white;
   font-family: Courier;
   font-size: 1.4rem;
-  padding-bottom: 2.5rem;
   h3 {
     margin: 1rem;
   }
   p, span {
     margin: 2rem;
   }
-  overflow: auto;
 `
 
 const Backdrop = styled.div
@@ -44,17 +41,28 @@ const Backdrop = styled.div
 
 const Footer = styled.div
 `
-left: 50%;
+outline: 3px solid white;
 display: flex;
 justify-content: center;
+width: 95vw;
+background-color: black;
+`
 
+
+const ContentContainer = styled.div
+`
+overflow: auto;
+width: 100%;
+height: calc(95vh - 3rem);
 `
 
 const Modal = (props) => {
   console.log(props.closeButton)
   return (
       <StyledModal onClick={(e)=>e.stopPropagation()}>
-        {props.children}
+        <ContentContainer>
+          {props.children}
+        </ContentContainer>
         <Footer>
           {props.closeButton ? <StyledButton onClick={props.closeModal}>Close</StyledButton> : null}
         </Footer>
