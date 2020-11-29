@@ -3,53 +3,64 @@ import React, {useState, useEffect} from "react"
 import Typewriter from 'typewriter-effect'
 
 const pageParagraphs = [
-  '<p>. . . . . . . . in . . . . . . can . . . . . .  me . . . . . . . . . . . . . . . . . . . </p>',
-  '<p>.....come in? Come in, do you read?</p>',
-  '<p>...There, your signal is stabilizing. The link is secure.</p>',
-  '<p>Here\'s the site I was telling you about. So glad you\'ve decided to be a part of my little project!</p>',
-  '<p>Click the "Find Anomaly" button to read anomalies that other explorers have added.</p>',
-  '<p>Or click the "Log Anomaly" button to write your own!</p>',
-  '<p>Click the "?" for additional help and comments. </p>',
-  '<p>That\'s all I\'ve got right now. Happy logging!</p>'
+  '. . . . . . . . in . . . . . . can . . . . . .  me . . . . . . . . . . . . . . . . . . . ',
+  '.....come in? Come in, do you read?',
+  '...There, your signal is stabilizing. The link is secure.',
+  'Here\'s the site I was telling you about. So glad you\'ve decided to be a part of my little project!',
+  'Click the "Find Anomaly" button to read anomalies that other explorers have added.',
+  'Or click the "Log Anomaly" button to write your own!',
+  'Click the "?" for additional help and comments.',
+  'That\'s all I\'ve got right now. Happy logging!'
 ]
 
-const IntroPage = () => {
-  const [display, setDisplay] = useState("")
+const IntroParagraph = ({content, setNext, next}) => {
   const [curChar, setCurChar] = useState(0)
-  const [curPar, setCurPar] = useState(0)
+  const [display, setDisplay] = useState("")
   const [skip, setSkip] = useState(false)
 
+  useEffect(()=>{
+    setInterval(()=>{
+      setDisplay(display=>display + content.charAt(curChar))
+      setCurChar(curChar=>curChar+1)
+    }, 20)
+  }, [])
+
 
   useEffect(()=>{
-      if (curPar < pageParagraphs.length){
-        setDisplay(display => display + pageParagraphs[curPar].charAt(curChar))
-        if (curChar < pageParagraphs[curPar].length){
-          setTimeout(()=>setCurChar(curChar=>curChar + 1), 100)
-        } else {
-            setTimeout(()=>{
-              setCurPar(curPar => curPar + 1)
-              setCurChar(0)
-            }, 2000)
-          }
-        }
-  }, [curChar])
-
-  useEffect(()=>{
-    if (skip){
-      setCurPar(curPar => curPar + 1)
-      setCurChar(0)
-      setSkip(false)
+    if (skip) {
+      console.log("skipping")
+      setDisplay(display=>display + content.substr(curChar+1))
+      setCurChar(content.length)
     }
   }, [skip])
 
-  const skipToEnd = () => {
-    setDisplay(display=>display + pageParagraphs[curPar].substr(curChar))
-    setSkip(true)
-  }
 
 
   return (
-    <div onClick={skipToEnd}>
+    <p onClick={()=>setSkip(true)}>
+      {display}
+    </p>
+  )
+}
+
+const IntroPage = () => {
+  const [display, setDisplay] = useState([])
+  const [curPar, setCurPar] = useState(0)
+  const [next, setNext] = useState(true)
+
+
+  useEffect(()=>{
+    console.log(next)
+    if (next && curPar < pageParagraphs.length){
+      setDisplay(display=>[...display, <IntroParagraph key={display.length} next={next} setNext={setNext} content={pageParagraphs[curPar]}/>])
+      setCurPar(curPar=>curPar+1)
+      setNext(false)
+    }
+  }, [curPar, next])
+
+
+  return (
+    <div>
       {display}
     </div>
   )
