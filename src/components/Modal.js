@@ -48,18 +48,30 @@ width: 95vw;
 background-color: black;
 `
 
+const CloseButton = styled.button 
+`
+float: right;
+background: none;
+color: inherit;
+font-family: inherit;
+outline: none;
+border: none;
+font-size: 1.2rem;
+`
+
 
 const ContentContainer = styled.div
 `
 overflow: auto;
 width: 100%;
-height: calc(95vh - 3rem);
+height: calc(90vh - 3rem);
 `
 
 const Modal = (props) => {
   console.log(props.closeButton)
   return (
       <StyledModal onClick={(e)=>e.stopPropagation()}>
+        <CloseButton onClick={props.closeModal}>✕</CloseButton>
         <ContentContainer>
           {props.children}
         </ContentContainer>

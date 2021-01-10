@@ -14,7 +14,7 @@ const HelpPage = () => {
     </p>
     <p>
     If you've recieved access to this site, it means you're registered in the UN Interstellar Logs
-    as a trader, scout, mercenary, or other adventurer. Doubtless, you have traveled across the galaxy
+    as a trader, scout, mercenary, or other space adventurer. Doubtless, you have traveled across the galaxy
     and seen things of which I, a humble researcher on Mars, could never dream.
     </p>
     <p>
